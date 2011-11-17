@@ -1,7 +1,11 @@
+
+import static view.SwingConsole.run;
+import view.MainWindow;
+
 public class Main {
 
     public static void main(String[] args) {
-	System.out.println("Hello World!");
+	run(new MainWindow(), "3Paint", 800, 600);
     }
 
 }
