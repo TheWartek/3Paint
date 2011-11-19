@@ -8,7 +8,10 @@
 	
 	<target name="compile" description="Compile the project">
 		<mkdir dir="${dir.classes}"/>
-		<javac srcdir="${dir.src}" destdir="${dir.classes}"/>
+		<copy todir="${dir.classes}/resources">
+			<fileset dir="${dir.src}/resources"/>
+		</copy>
+		<javac srcdir="${dir.src}" destdir="${dir.classes}" includeantruntime="false" />
 	</target>
 	
 	<target name="run" depends="jar" description="Run the project">
