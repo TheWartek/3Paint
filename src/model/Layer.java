@@ -53,4 +53,5 @@ public class Layer implements ImageOperations {
     public int getPixel(int x, int y) {
 	return img.getRGB(x, y);
     }
+    
 }

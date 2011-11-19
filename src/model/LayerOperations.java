@@ -13,4 +13,6 @@ public interface LayerOperations {
     void showLayer(int n) throws LayerNotFoundException;
     void showLayer(String name) throws LayerNotFoundException;
     void showLayerById(long id) throws LayerNotFoundException;
+    void addLayer();
+    void addLayer(String name);
 }

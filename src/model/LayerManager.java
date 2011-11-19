@@ -7,7 +7,14 @@ import exceptions.LayerNotFoundException;
 
 public class LayerManager implements LayerOperations {
     private List<Layer> layers = new ArrayList<Layer>();
-    private int activeLayer;
+    private int activeLayer = -1;
+    private int width = 0;
+    private int height = 0;
+    
+    public LayerManager(int width, int height) {
+	this.width = width;
+	this.height = height;
+    }
 
     @Override
     public Layer getLayer(int n) throws LayerNotFoundException {
@@ -98,4 +105,22 @@ public class LayerManager implements LayerOperations {
     public void showLayerById(long id) throws LayerNotFoundException {
 	getLayerById(id).show();
     }
+
+    @Override
+    public void addLayer() {
+	layers.add(new Layer(newId(), width, height));	
+    }
+    
+    @Override
+    public void addLayer(String name) {
+	layers.add(new Layer(newId(), name, width, height));	
+    }
+    
+    //==================
+    
+    private long newId() {
+	return layers.get(layers.size()-1).getId() + 1;
+    }
+
+    
 }
