@@ -2,7 +2,7 @@ package model;
 
 import java.awt.image.BufferedImage;
 
-public class Layer implements ImageOperations {
+public class Layer implements ImageOperations  {
     private BufferedImage img;
     private long id;
     private boolean visible;

@@ -14,6 +14,8 @@ public class LayerManager implements LayerOperations {
     public LayerManager(int width, int height) {
 	this.width = width;
 	this.height = height;
+	addLayer();
+	activeLayer = 0;
     }
 
     @Override
