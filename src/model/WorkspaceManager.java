@@ -9,4 +9,8 @@ public class WorkspaceManager {
     public void newWorkspace(int width, int height, String name) {
 	wrks.add(new Workspace(width, height, name));
     }
+    
+    public int numOfWorkspaces() {
+	return wrks.size();
+    }
 }

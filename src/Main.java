@@ -5,12 +5,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.SplashScreen;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
 
 import model.Environment;
-
 import view.MainWindow;
 
 public class Main extends JFrame {
@@ -49,7 +47,7 @@ public class Main extends JFrame {
 
 	renderSplashScreen(g, 100, "GUI: Drawing Main Window...");
 	splash.update();
-
+	
 	run(new MainWindow(), "3Paint", 800, 600);
     }
 

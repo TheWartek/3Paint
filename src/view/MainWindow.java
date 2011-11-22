@@ -13,19 +13,26 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.EtchedBorder;
+
+import model.Environment;
+
+import controller.NewAction;
+import controller.QuitAction;
 
 public class MainWindow extends JFrame {
     private static final long serialVersionUID = 1L;
     private JMenuBar menu = new JMenuBar();
 
     public MainWindow() {
+	//application icon
 	ImageIcon icon = new ImageIcon(getClass().getResource("/resources/images/3Paint.png"));
 	setIconImage(icon.getImage());
+	
 	setLayout(new BorderLayout());
+	//creating menu bar
 	buildMenu();
 	setJMenuBar(menu);
+	
 	JPanel p = new JPanel();
 	p.setLayout(new FlowLayout());
 	p.add(new JLabel("Pasek narzêdzi"));
@@ -48,14 +55,23 @@ public class MainWindow extends JFrame {
     
     private void buildMenu() {
 	JMenu a = new JMenu("Plik");
-	a.add(new JMenuItem("Nowy"));
-	a.add(new JMenuItem("Otwórz"));
-	a.add(new JMenuItem("Zapisz"));
+	JMenuItem item = null;
+	
+	item = new JMenuItem("Nowy");
+	item.addActionListener(new NewAction(this));
+	a.add(item);
+	
 	a.addSeparator();
-	a.add(new JMenuItem("Zamknij"));
-	a.add(new JMenuItem("Zamknij wszystkie"));
-	a.addSeparator();
-	a.add(new JMenuItem("Wyjœcie"));
+	
+	item = new JMenuItem("Wyjœcie");
+	item.addActionListener(new QuitAction(this));
+	a.add(item);
+	
 	menu.add(a);
+    }
+    
+    public void refreshProjectTabs() {
+	System.out.println("Refreshing tabs with projects...");
+	System.out.println(Environment.wrkman.numOfWorkspaces());
     }
 }

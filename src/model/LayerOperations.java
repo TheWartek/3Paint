@@ -7,6 +7,7 @@ public interface LayerOperations {
     Layer getLayer(String name) throws LayerNotFoundException;
     Layer getLayerById(long id) throws LayerNotFoundException;
     Layer getActiveLayer() throws LayerNotFoundException;
+    Layer getLastLayer() throws LayerNotFoundException;
     void hideLayer(int n) throws LayerNotFoundException;
     void hideLayer(String name) throws LayerNotFoundException;
     void hideLayerById(long id) throws LayerNotFoundException;

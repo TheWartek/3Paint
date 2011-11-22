@@ -118,10 +118,21 @@ public class LayerManager implements LayerOperations {
 	layers.add(new Layer(newId(), name, width, height));	
     }
     
-    //==================
-    
     private long newId() {
-	return layers.get(layers.size()-1).getId() + 1;
+	try {
+	    return getLastLayer().getId() + 1;
+	} catch (LayerNotFoundException e) {
+	    return 0L;
+	}
+    }
+
+    @Override
+    public Layer getLastLayer() throws LayerNotFoundException {
+	if (layers.size() == 0) {
+	    throw new LayerNotFoundException("No defined layers.");
+	} else { 
+	    return layers.get(layers.size()-1);
+	}
     }
 
     
