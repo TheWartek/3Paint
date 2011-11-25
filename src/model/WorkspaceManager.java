@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class WorkspaceManager {
@@ -43,5 +42,13 @@ public class WorkspaceManager {
 	    }
 	}
 	return false;
+    }
+    
+    /**
+     * Generates unique name of new project.
+     * @return Unique project name.
+     */
+    public String generateProjectName() {
+	return "Untitled" + wrks.size();
     }
 }

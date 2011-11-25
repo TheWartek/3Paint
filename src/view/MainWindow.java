@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import model.Environment;
-
+import controller.AboutAction;
 import controller.NewAction;
 import controller.QuitAction;
 
@@ -54,8 +54,10 @@ public class MainWindow extends JFrame {
     }
     
     private void buildMenu() {
-	JMenu a = new JMenu("Plik");
+	JMenu a = null;
 	JMenuItem item = null;
+	//File
+	a = new JMenu("Plik");
 	
 	item = new JMenuItem("Nowy");
 	item.addActionListener(new NewAction(this));
@@ -67,6 +69,14 @@ public class MainWindow extends JFrame {
 	item.addActionListener(new QuitAction(this));
 	a.add(item);
 	
+	menu.add(a);
+	
+	//Help
+	a = new JMenu("Pomoc");
+	
+	item = new JMenuItem("3Paint - informacje");
+	item.addActionListener(new AboutAction(this));
+	a.add(item);
 	menu.add(a);
     }
     

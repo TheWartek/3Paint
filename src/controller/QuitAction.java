@@ -28,6 +28,8 @@ public class QuitAction implements ActionListener {
 		frame.dispose();
 		break;
 	    }
+	} else {
+	    frame.dispose();
 	}
     }
 }

@@ -11,25 +11,21 @@ import view.dialogs.NewProject;
 
 public class NewAction implements ActionListener {
     private JFrame parent;
-    //private boolean canceled = true;
     
     public NewAction(JFrame parent) {
 	this.parent = parent;
     }
     
     public void actionPerformed(ActionEvent e) {
-	NewProject p = new NewProject(parent);//, this);
+	String projectName = Environment.wrkman.generateProjectName();
+	NewProject p = new NewProject(parent, projectName);
 	
 	if (!p.isCanceled()) {
 	    int width = Integer.parseInt(p.getWidthValue());
 	    int height = Integer.parseInt(p.getHeightValue());
-	    Environment.wrkman.newWorkspace(width, height, "Nazwa");
+	    Environment.wrkman.newWorkspace(width, height, p.getName());
 	    ((MainWindow)parent).refreshProjectTabs();
-	    //canceled = true;
 	}
     }
     
-//    public void setCanceled(boolean val) {
-//	canceled = val;
-//    }
 }

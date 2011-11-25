@@ -52,6 +52,7 @@ public class Main extends JFrame {
     }
 
     public static void main(String[] args) {
+	@SuppressWarnings("unused")
 	Main m = new Main();
     }
 

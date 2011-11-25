@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controller.NewAction;
+import controller.DisposeAction;
 
 public class NewProject extends JDialog {
     private static final long serialVersionUID = -524239917053925288L;
@@ -28,12 +28,10 @@ public class NewProject extends JDialog {
     private JButton ok = new JButton("OK");
     private JLabel l1 = new JLabel("Szerokoœæ:");
     private JLabel l2 = new JLabel("Wysokoœæ:");
-    //private ActionListener parentActionListener;
     private boolean canceled = true;
 
     private ActionListener okAction = new ActionListener() {
 	public void actionPerformed(ActionEvent e) {
-	    //((NewAction) parentActionListener).setCanceled(false);
 	    canceled = false;
 	    String w = width.getText();
 	    String h = height.getText();
@@ -41,7 +39,6 @@ public class NewProject extends JDialog {
 
 	    if (w.isEmpty() || h.isEmpty() || n.isEmpty()) {
 		JOptionPane.showMessageDialog(NewProject.this, "Nie wprowadzono wszystkich danych.", "B³¹d", JOptionPane.ERROR_MESSAGE);
-		//((NewAction) parentActionListener).setCanceled(true);
 		canceled = true;
 		return;
 	    }
@@ -51,7 +48,6 @@ public class NewProject extends JDialog {
 		Integer.parseInt(h);
 	    } catch (NumberFormatException nfe) {
 		JOptionPane.showMessageDialog(NewProject.this, "Szerokoœæ i wysokoœæ musi byæ liczb¹.", "B³¹d", JOptionPane.ERROR_MESSAGE);
-		//((NewAction) parentActionListener).setCanceled(true);
 		canceled = true;
 		return;
 	    }
@@ -59,18 +55,10 @@ public class NewProject extends JDialog {
 	}
     };
 
-    private ActionListener cancelAction = new ActionListener() {
-	public void actionPerformed(ActionEvent e) {
-	    dispose();
-	}
-    };
-
-    public NewProject(JFrame parent) {//, final ActionListener parentActionListener) {
+    public NewProject(JFrame parent, String projectName) {
 	super(parent, "Nowy...");
 	setLayout(new FlowLayout());
 	setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
-	//this.parentActionListener = parentActionListener;
 
 	JPanel p1 = new JPanel();
 	p1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Ustawienia"));
@@ -87,10 +75,11 @@ public class NewProject extends JDialog {
 	p1.add(tmp);
 	p1.setPreferredSize(new Dimension(220, 200));
 
-	cancel.addActionListener(cancelAction);
+	cancel.addActionListener(new DisposeAction(this));
 	ok.addActionListener(okAction);
 
 	add(new JLabel("Nazwa:"));
+	name.setText(projectName);
 	add(name);
 	add(p1);
 	add(ok);
