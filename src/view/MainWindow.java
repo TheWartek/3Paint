@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
+import javax.swing.event.ChangeListener;
 
 import model.Environment;
 import model.Workspace;
@@ -98,7 +99,8 @@ public class MainWindow extends JFrame {
 	} catch (WorkspaceNotFoundException e) {
 	    JOptionPane.showMessageDialog(this, "B³¹d podczas dodawania projektu.", "B³¹d", JOptionPane.ERROR_MESSAGE);
 	}
-	JScrollPane sp = new JScrollPane(new PaintComponent(w));
+	PaintComponent pc = new PaintComponent(w);
+	JScrollPane sp = new JScrollPane(pc);
 	sp.setBackground(Color.GRAY);
 	tabs.addTab(w.getName(), sp);
     }

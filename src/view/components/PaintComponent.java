@@ -1,8 +1,12 @@
 package view.components;
 
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -18,7 +22,6 @@ public class PaintComponent extends JPanel implements MouseListener, MouseMotion
     private Workspace wrk;
     
     public PaintComponent(Workspace w) {
-	setLayout(new FlowLayout());
 	wrk = w;
 	setPreferredSize(new Dimension(w.getWidth(), w.getHeight()));
     }
@@ -66,6 +69,28 @@ public class PaintComponent extends JPanel implements MouseListener, MouseMotion
 	} catch (LayerNotFoundException e) {
 	    e.printStackTrace();
 	}
-	g.drawImage(l.getImage(), 0, 0, null);
+	Graphics2D graphics = (Graphics2D)g;
+	graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+	Color start = new Color(60, 60, 60, 255);
+	Color stop = new Color(60, 60, 60, 0);
+	
+	//---Draw gradient border---//
+	//naroznik
+	Paint p = new GradientPaint(wrk.getWidth()-2, wrk.getHeight()-2, start, wrk.getWidth()+5, wrk.getHeight()+5, stop);
+	graphics.setPaint(p);
+	graphics.fillRoundRect(wrk.getWidth()-5, wrk.getHeight()-5, 10, 10, 10, 10);
+	graphics.setPaint(Color.GRAY);
+	//usuniecie niepotrzebnych czesci naroznika
+	graphics.fillRect(wrk.getWidth()-5, wrk.getHeight(), 5, 5);
+	graphics.fillRect(wrk.getWidth(), wrk.getHeight()-5, 5, 5);
+	//prawa
+	p = new GradientPaint(wrk.getWidth(), 0, start, wrk.getWidth()+5, 0, stop);
+	graphics.setPaint(p);
+	graphics.fillRect(wrk.getWidth(), 0, wrk.getWidth()+5, wrk.getHeight());
+	//dol
+	p = new GradientPaint(0, wrk.getHeight(), start, 0, wrk.getHeight()+5, stop);
+	graphics.setPaint(p);
+	graphics.fillRect(0, wrk.getHeight(), wrk.getWidth(), wrk.getHeight()+5);
+	graphics.drawImage(l.getImage(), 0, 0, null);
     }
 }
