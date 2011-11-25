@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 import model.Environment;
 import view.MainWindow;
-import view.dialogs.NewProject;
+import view.dialogs.NewProjectDialog;
 
 public class NewAction implements ActionListener {
     private JFrame parent;
@@ -18,7 +18,7 @@ public class NewAction implements ActionListener {
     
     public void actionPerformed(ActionEvent e) {
 	String projectName = Environment.wrkman.generateProjectName();
-	NewProject p = new NewProject(parent, projectName);
+	NewProjectDialog p = new NewProjectDialog(parent, projectName);
 	
 	if (!p.isCanceled()) {
 	    int width = Integer.parseInt(p.getWidthValue());

@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 
 import controller.DisposeAction;
 
-public class NewProject extends JDialog {
+public class NewProjectDialog extends JDialog {
     private static final long serialVersionUID = -524239917053925288L;
     private JTextField width = new JTextField(10);
     private JTextField height = new JTextField(10);
@@ -38,7 +38,7 @@ public class NewProject extends JDialog {
 	    String n = name.getText();
 
 	    if (w.isEmpty() || h.isEmpty() || n.isEmpty()) {
-		JOptionPane.showMessageDialog(NewProject.this, "Nie wprowadzono wszystkich danych.", "B³¹d", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(NewProjectDialog.this, "Nie wprowadzono wszystkich danych.", "B³¹d", JOptionPane.ERROR_MESSAGE);
 		canceled = true;
 		return;
 	    }
@@ -47,7 +47,7 @@ public class NewProject extends JDialog {
 		Integer.parseInt(w);
 		Integer.parseInt(h);
 	    } catch (NumberFormatException nfe) {
-		JOptionPane.showMessageDialog(NewProject.this, "Szerokoœæ i wysokoœæ musi byæ liczb¹.", "B³¹d", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(NewProjectDialog.this, "Szerokoœæ i wysokoœæ musi byæ liczb¹.", "B³¹d", JOptionPane.ERROR_MESSAGE);
 		canceled = true;
 		return;
 	    }
@@ -55,7 +55,7 @@ public class NewProject extends JDialog {
 	}
     };
 
-    public NewProject(JFrame parent, String projectName) {
+    public NewProjectDialog(JFrame parent, String projectName) {
 	super(parent, "Nowy...");
 	setLayout(new FlowLayout());
 	setDefaultCloseOperation(DISPOSE_ON_CLOSE);

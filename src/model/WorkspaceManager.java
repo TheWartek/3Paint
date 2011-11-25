@@ -49,6 +49,6 @@ public class WorkspaceManager {
      * @return Unique project name.
      */
     public String generateProjectName() {
-	return "Untitled" + wrks.size();
+	return "Untitled-" + wrks.size();
     }
 }

@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import view.dialogs.About;
+import view.dialogs.AboutDialog;
 
 public class AboutAction implements ActionListener {
     private JFrame parent;
@@ -15,6 +15,6 @@ public class AboutAction implements ActionListener {
     }
     
     public void actionPerformed(ActionEvent e) {
-	new About(parent);
+	new AboutDialog(parent);
     }
 }
