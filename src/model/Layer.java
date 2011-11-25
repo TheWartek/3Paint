@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public class Layer implements ImageOperations  {
@@ -10,6 +12,9 @@ public class Layer implements ImageOperations  {
     
     public Layer(long id, int width, int height) {
 	img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+	Graphics g = img.getGraphics();
+	g.setColor(Color.WHITE);
+	g.fillRect(0, 0, width, height);
 	this.id = id;
 	name = "Layer" + id;
     }
@@ -52,6 +57,11 @@ public class Layer implements ImageOperations  {
     @Override
     public int getPixel(int x, int y) {
 	return img.getRGB(x, y);
+    }
+    
+    @Override
+    public BufferedImage getImage() {
+	return img;
     }
     
 }

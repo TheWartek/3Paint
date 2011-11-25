@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import exceptions.WorkspaceNotFoundException;
+
 public class WorkspaceManager {
     private List<Workspace> wrks = new ArrayList<Workspace>();
     
@@ -50,5 +52,13 @@ public class WorkspaceManager {
      */
     public String generateProjectName() {
 	return "Untitled-" + wrks.size();
+    }
+    
+    public Workspace getLast() throws WorkspaceNotFoundException {
+	if (wrks.size() == 0) {
+	    throw new WorkspaceNotFoundException("No workspaces found.");
+	} else {
+	    return wrks.get(wrks.size() - 1);
+	}
     }
 }

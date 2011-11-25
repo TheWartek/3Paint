@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
@@ -11,27 +12,37 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 
 import model.Environment;
+import model.Workspace;
+import view.components.PaintComponent;
 import controller.AboutAction;
 import controller.NewAction;
 import controller.QuitAction;
+import exceptions.WorkspaceNotFoundException;
 
 public class MainWindow extends JFrame {
     private static final long serialVersionUID = 1L;
     private JMenuBar menu = new JMenuBar();
+    private JTabbedPane tabs = new JTabbedPane();
 
     public MainWindow() {
+	setLayout(new BorderLayout());
+	
 	//application icon
 	ImageIcon icon = new ImageIcon(getClass().getResource("/resources/images/3Paint.png"));
 	setIconImage(icon.getImage());
 	
-	setLayout(new BorderLayout());
 	//creating menu bar
 	buildMenu();
 	setJMenuBar(menu);
+
+	add(tabs);
 	
 	JPanel p = new JPanel();
 	p.setLayout(new FlowLayout());
@@ -81,7 +92,15 @@ public class MainWindow extends JFrame {
     }
     
     public void refreshProjectTabs() {
-	System.out.println("Refreshing tabs with projects...");
-	System.out.println(Environment.wrkman.numOfWorkspaces());
+	Workspace w = null;
+	try {
+	    w = Environment.wrkman.getLast();
+	} catch (WorkspaceNotFoundException e) {
+	    JOptionPane.showMessageDialog(this, "B³¹d podczas dodawania projektu.", "B³¹d", JOptionPane.ERROR_MESSAGE);
+	}
+	JScrollPane sp = new JScrollPane(new PaintComponent(w));
+	sp.setBackground(Color.GRAY);
+	tabs.addTab(w.getName(), sp);
     }
+    
 }
