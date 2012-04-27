@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
-import javax.swing.event.ChangeListener;
 
 import model.Environment;
 import model.Workspace;
@@ -49,9 +48,9 @@ public class MainWindow extends JFrame {
 	p.setLayout(new FlowLayout());
 	p.add(new JLabel("Pasek narzêdzi"));
 	p.setBorder(BorderFactory.createRaisedBevelBorder());
-	JToolBar t = new JToolBar("sadsada", JToolBar.HORIZONTAL);
+	JToolBar t = new JToolBar("Toolbar", JToolBar.HORIZONTAL);
 	t.setBorder(BorderFactory.createEtchedBorder());
-	t.add(new JButton("ghjgjg"));
+	t.add(new JButton("Przycisk"));
 	add(BorderLayout.NORTH, t);
 	add(BorderLayout.WEST, p);
 	p = new JPanel();
@@ -102,7 +101,8 @@ public class MainWindow extends JFrame {
 	PaintComponent pc = new PaintComponent(w);
 	JScrollPane sp = new JScrollPane(pc);
 	sp.setBackground(Color.GRAY);
-	tabs.addTab(w.getName(), sp);
+	ImageIcon ic = new ImageIcon(getClass().getResource("/resources/images/3Paint.png"));
+	tabs.addTab(w.getName(), ic, sp);
     }
     
 }

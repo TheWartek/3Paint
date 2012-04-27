@@ -56,7 +56,7 @@ public class AboutDialog extends JDialog {
 	//main content panel
 	content.setBorder(BorderFactory.createLoweredBevelBorder());
 	content.setBackground(Color.WHITE);
-	content.add(new JLabel("<html><font size='7'><b>3Paint</b></font><br /><hr /></html>"));
+	content.add(new JLabel("<html><center><font size='7'><b>3Paint</b></font><br /><hr /><i>Version: 0.0.3 (pre-alpha)</i></center></html>"));
 	add(content);
 	
 	setVisible(true);
