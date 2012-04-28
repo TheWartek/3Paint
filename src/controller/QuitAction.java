@@ -17,7 +17,7 @@ public class QuitAction implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
 	if (Environment.wrkman.unsavedProjects()) {
-	    int option = JOptionPane.showConfirmDialog(frame, "IstniejÄ… niezapisane projekty. Czy chcesz je zapisaÄ‡ przed wyjÅ›ciem?", "Zapisz zmiany",
+	    int option = JOptionPane.showConfirmDialog(frame, "Istniej¹ niezapisane projekty. Czy chcesz je zapisaæ przed wyjœciem?", "Zapisz zmiany",
 						       JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 	    switch (option) {
 	    case JOptionPane.YES_OPTION:
