@@ -26,83 +26,91 @@ import controller.NewAction;
 import controller.QuitAction;
 import exceptions.WorkspaceNotFoundException;
 
-public class MainWindow extends JFrame {
-    private static final long serialVersionUID = 1L;
-    private JMenuBar menu = new JMenuBar();
-    private JTabbedPane tabs = new JTabbedPane();
+public class MainWindow extends JFrame
+{
+	private static final long serialVersionUID = 1L;
+	private JMenuBar menu = new JMenuBar();
+	private JTabbedPane tabs = new JTabbedPane();
 
-    public MainWindow() {
-	setLayout(new BorderLayout());
-	
-	//application icon
-	ImageIcon icon = new ImageIcon(getClass().getResource("/resources/images/3Paint.png"));
-	setIconImage(icon.getImage());
-	
-	//creating menu bar
-	buildMenu();
-	setJMenuBar(menu);
+	public MainWindow()
+	{
+		setLayout(new BorderLayout());
 
-	add(tabs);
-	
-	JPanel p = new JPanel();
-	p.setLayout(new FlowLayout());
-	p.add(new JLabel("Pasek narzêdzi"));
-	p.setBorder(BorderFactory.createRaisedBevelBorder());
-	JToolBar t = new JToolBar("Toolbar", JToolBar.HORIZONTAL);
-	t.setBorder(BorderFactory.createEtchedBorder());
-	t.add(new JButton("Przycisk"));
-	add(BorderLayout.NORTH, t);
-	add(BorderLayout.WEST, p);
-	p = new JPanel();
-	p.setLayout(new FlowLayout());
-	p.add(new JLabel("Warstwy i inne"));
-	p.setBorder(BorderFactory.createRaisedBevelBorder());
-	add(BorderLayout.EAST, p);
-	p = new JPanel();
-	p.setLayout(new FlowLayout());
-	p.add(new JLabel("Pasek stanu"));
-	add(BorderLayout.SOUTH, p);
-    }
-    
-    private void buildMenu() {
-	JMenu a = null;
-	JMenuItem item = null;
-	//File
-	a = new JMenu("Plik");
-	
-	item = new JMenuItem("Nowy");
-	item.addActionListener(new NewAction(this));
-	a.add(item);
-	
-	a.addSeparator();
-	
-	item = new JMenuItem("Wyjœcie");
-	item.addActionListener(new QuitAction(this));
-	a.add(item);
-	
-	menu.add(a);
-	
-	//Help
-	a = new JMenu("Pomoc");
-	
-	item = new JMenuItem("3Paint - informacje");
-	item.addActionListener(new AboutAction(this));
-	a.add(item);
-	menu.add(a);
-    }
-    
-    public void refreshProjectTabs() {
-	Workspace w = null;
-	try {
-	    w = Environment.wrkman.getLast();
-	} catch (WorkspaceNotFoundException e) {
-	    JOptionPane.showMessageDialog(this, "B³¹d podczas dodawania projektu.", "B³¹d", JOptionPane.ERROR_MESSAGE);
+		// application icon
+		ImageIcon icon = new ImageIcon(getClass().getResource("/resources/images/3Paint.png"));
+		setIconImage(icon.getImage());
+
+		// creating menu bar
+		createMenu();
+		setJMenuBar(menu);
+
+		add(tabs);
+
+		JPanel p = new JPanel();
+		p.setLayout(new FlowLayout());
+		p.add(new JLabel("Pasek narzêdzi"));
+		p.setBorder(BorderFactory.createRaisedBevelBorder());
+		JToolBar t = new JToolBar("Toolbar", JToolBar.HORIZONTAL);
+		t.setBorder(BorderFactory.createEtchedBorder());
+		t.add(new JButton("Przycisk"));
+		add(BorderLayout.NORTH, t);
+		add(BorderLayout.WEST, p);
+		p = new JPanel();
+		p.setLayout(new FlowLayout());
+		p.add(new JLabel("Warstwy i inne"));
+		p.setBorder(BorderFactory.createRaisedBevelBorder());
+		add(BorderLayout.EAST, p);
+		p = new JPanel();
+		p.setLayout(new FlowLayout());
+		p.add(new JLabel("Pasek stanu"));
+		add(BorderLayout.SOUTH, p);
 	}
-	PaintComponent pc = new PaintComponent(w);
-	JScrollPane sp = new JScrollPane(pc);
-	sp.setBackground(Color.GRAY);
-	ImageIcon ic = new ImageIcon(getClass().getResource("/resources/images/3Paint.png"));
-	tabs.addTab(w.getName(), ic, sp);
-    }
-    
+
+	private void createMenu()
+	{
+		JMenu a = null;
+		JMenuItem item = null;
+		// File
+		a = new JMenu("Plik");
+
+		item = new JMenuItem("Nowy");
+		item.addActionListener(new NewAction(this));
+		a.add(item);
+
+		a.addSeparator();
+
+		item = new JMenuItem("Wyjœcie");
+		item.addActionListener(new QuitAction(this));
+		a.add(item);
+
+		menu.add(a);
+
+		// Help
+		a = new JMenu("Pomoc");
+
+		item = new JMenuItem("3Paint - informacje");
+		item.addActionListener(new AboutAction(this));
+		a.add(item);
+		menu.add(a);
+	}
+
+	public void refreshProjectTabs()
+	{
+		Workspace w = null;
+
+		try
+		{
+			w = Environment.wrkman.getLast();
+		}
+		catch (WorkspaceNotFoundException e)
+		{
+			JOptionPane.showMessageDialog(this, "B³¹d podczas dodawania projektu.", "B³¹d", JOptionPane.ERROR_MESSAGE);
+		}
+
+		PaintComponent pc = new PaintComponent(w);
+		JScrollPane sp = new JScrollPane(pc);
+		sp.setBackground(Color.GRAY);
+		ImageIcon ic = new ImageIcon(getClass().getResource("/resources/images/3Paint.png"));
+		tabs.addTab(w.getName(), ic, sp);
+	}
 }
